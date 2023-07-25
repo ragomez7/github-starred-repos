@@ -20,6 +20,7 @@ function RepoList({ userName }) {
   };
   useEffect(() => {
     setLoading(true);
+    setError({});
     if (userName) {
       const fetchRepos = async () => {
         const fetchedRepos = await getRepositories(userName);
@@ -45,7 +46,7 @@ function RepoList({ userName }) {
   if (loading) return "Loading...";
   return (
     <ul style={listStyle}>
-      {repos?.map((repo) => (
+      {Array.isArray(repos) && repos.map((repo) => (
         <Repo key={repo.id} repo={repo} />
       ))}
     </ul>

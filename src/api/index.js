@@ -9,7 +9,6 @@ export const getRepositories = async (userName) => {
     const repos = await res.json();
     const notForkedRepos = repos.filter((repo) => !repo.fork);
     const reposSortedByStarCount = notForkedRepos.sort((a, b) => b.stargazers_count - a.stargazers_count);
-    console.log(reposSortedByStarCount);
     return reposSortedByStarCount.slice(0, 5);
   } catch (err) {
     if (err.message === "User Not Found")
